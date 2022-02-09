@@ -39,6 +39,13 @@ if [ -z "${CWTCH_CONFIG_DIR}" ]; then
 	CWTCH_CONFIG_DIR=/etc/cwtch/
 fi
 
+# Properties 
+echo '    type: string' >> /root/persistence/start9/stats.yaml
+echo '    description: Password to use with the account' >> /root/persistence/start9/stats.yaml
+echo '    copyable: true' >> /root/persistence/start9/stats.yaml
+echo '    qr: false' >> /root/persistence/start9/stats.yaml
+echo '    masked: true' >> /root/persistence/start9/stats.yaml
+
 # Setting up Config settings for Tor Address
 export TOR_ADDRESS=$(yq e '.tor-address' /root/persistence/start9/config.yaml)
 HOST_IP=$(ip -4 route list match 0/0 | awk '{print $3}')
@@ -54,7 +61,7 @@ trap _term SIGTERM
 #Run cwtch (or whatever the user passed)
 CWTCH_CONFIG_DIR=$CWTCH_CONFIG_DIR  exec "$@"
 cd usr/local/bin
-exec tini /cwtch
+./cwtch
 # cd app
 # go build
 # ./app

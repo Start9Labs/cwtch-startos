@@ -1,21 +1,10 @@
 # These are the configuration options available to the user in the UI on the Service page, under 'Config.'
 # See github.com/Start9Labs/lnd-wrapper for a good example config_spec
 
-tor-address:
-  name: Tor Address
-  description: The homeserver's Tor address for federation and client access
-  type: pointer
-  subtype: package
-  package-id: cwtch
-  target: tor-address
-  interface: main
-advanced:
-  type: object
-  name: Advanced
-  nullable: false
-  disable-metrics:
-    type: boolean
-    name: Disable Server Metrics
-    description: Disable metrics reporting to serverMonitor.txt and associated tracking routines
-    changeWarning: Disabling server metrics reporting will prevent data from being saved to serverMonitor.txt and associated tracking routines
-    default: false
+
+disable-metrics:
+  type: boolean
+  name: Disable Server Metrics
+  description: Disable metrics reporting to serverMonitor.txt and associated tracking routines
+  changeWarning: Disabling server metrics reporting will prevent data from being saved to serverMonitor.txt and associated tracking routines
+  default: false

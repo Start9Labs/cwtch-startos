@@ -1,7 +1,7 @@
 FROM --platform=linux/arm64/v8 arm64v8/alpine:latest as tor-build-stage
+
 # Install prerequisites, grab tor, compile it and move to /usr/local
-# RUN apk --no-cache add --update binfmt-support
-# RUN apk add ca-certificates wget
+
 RUN wget -q https://dist.torproject.org/tor-0.4.6.6.tar.gz
 RUN apk --no-cache add --update gnupg build-base libevent libevent-dev libressl libressl-dev xz-libs xz-dev zlib zlib-dev zstd zstd-dev 
 RUN tar xf tor-0.4.6.6.tar.gz && cd tor-0.4.6.6 && ./configure && make install && ls -R /usr/local/
@@ -29,13 +29,15 @@ COPY --from=tor-build-stage /usr/local/ /usr/local/
 COPY --from=cwtch-build-stage /go/src/app/app /usr/local/bin/cwtch
 # Create unprivileged users
 RUN mkdir -p /run/tor && mkdir /var/lib/cwtch && addgroup -S $TOR_USER && adduser -G $TOR_USER -S $TOR_USER && adduser -S $CWTCH_USER
-# Copy Tor configuration file
+# Copy configuration files
 COPY cwtch/docker/torrc /etc/tor/torrc
+ADD ./configurator/target/aarch64-unknown-linux-musl/release/configurator /usr/local/bin/configurator
 # set up entrypoint
 ADD ./docker_entrypoint.sh /usr/local/bin/docker_entrypoint.sh
 RUN chmod a+x /usr/local/bin/docker_entrypoint.sh
 # Persist data
-VOLUME /etc/tor /var/lib/tor /var/lib/cwtch
+VOLUME /etc/tor /var/lib/tor /var/lib/Cwtch
+
 ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/docker_entrypoint.sh"]
 CMD ["/usr/local/bin/cwtch","--exportServerBundle"]
 
