@@ -3,4 +3,4 @@
 	url = https://github.com/Start9Labs/cwtch-server.git
 [submodule "cwtch"]
 	path = cwtch
-	url = https://github.com/Start9Labs/cwtch-server.git
+	url = https://git.openprivacy.ca/cwtch.im/server.git
