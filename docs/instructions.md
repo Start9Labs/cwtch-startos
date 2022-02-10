@@ -1,18 +1,19 @@
-# Instructions for Cwtch
+# Instructions
 
-Cwtch takes the following arguments
 
-    -exportServerBundle: Export the server bundle to a file called serverbundle
-    -disableMetrics: Disable metrics reporting to serverMonitor.txt and associated tracking routines
-    -dir [directory]: specify a directory to store server files (default is current directory)
+# Using Cwtch Server
 
-The app takes the following environment variables
+## Key Information
 
-    CWTCH_HOME: sets the config dir for the app
-    DISABLE_METRICS: if set to any value ('1') it disables metrics reporting to serverMonitor.txt and associated tracking routines
+When you run Cwtch on the Embassy, you are running your *own* Cwtch server instance, rather than using someone else's and trusting them.
 
-# Using the Server 
+## Using your Server Bundle
 
-When run the app will output standard log lines, one of which will contain the serverbundle in purple. 
+When you first run your Cwtch server, it will generate a tor address for your server, and a server bundle. Note, **your server bundle grants anyone that has it admin rights to your cwtch server**; Please use caution when sharing.
 
-This is the part you need to capture and import into a Cwtch client app so you can use the server for hosting groups
+The Server Bundle can be found on the Cwtch Properties Page.
+
+## Restoring from Backup
+
+**IMPORTANT** There is a known bug that the server bundle and tor address does not persist when the service is restarted. Maybe if you send Dread a bottle of Appleton VX Rum, he may fix it :-) 
+**UPDATE** It persists now, but you can still send him the rum ;-)

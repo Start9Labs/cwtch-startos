@@ -7,4 +7,6 @@ disable-metrics:
   name: Disable Server Metrics
   description: Disable metrics reporting to serverMonitor.txt and associated tracking routines
   changeWarning: Disabling server metrics reporting will prevent data from being saved to serverMonitor.txt and associated tracking routines
-  default: false
+  default: true
+
+# POTENTIAL BUG: I'm not sure if this is actually being recognized by Cwtch and disabling the metrics reporting. Still needs to be tested properly. 

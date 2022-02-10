@@ -1,16 +1,17 @@
 id: cwtch 
-title: "Cwtch"
+title: "Cwtch Server"
 version: 1.5.2.0
-release-notes: "Initial version for EmbassyOS v0.3.0"
+release-notes: "Initial release of a Cwtch stand-alone server for EmbassyOS v0.3.0"
 license: mit
 wrapper-repo: "https://github.com/Start9Labs/cwtch-wrapper"
 upstream-repo: "https://git.openprivacy.ca/cwtch.im/server"
 support-site: "https://cwtch.im/"
 marketing-site: "https://cwtch.im/"
+donation-url: "https://openprivacy.ca/donate"
 build: ["make"]
 min-os-version: "0.3.0"
 description:
-  short: A free, open-source flutter based messaging platform.
+  short: Stand-alone server for a free, open-source flutter based messaging platform.
   long: |
     Cwtch (/kʊtʃ/ - a Welsh word roughly translating to “a hug that creates a safe place”) is a decentralized, privacy-preserving, multi-party messaging protocol that can be used to build metadata resistant applications.
 assets:
@@ -24,7 +25,7 @@ main:
   entrypoint: "docker_entrypoint.sh"
   args: []
   mounts:
-    main: /root/persistence
+    main: /var/lib/cwtch
     compat: /mnt/assets
   io-format: yaml
 health-checks: {} 
@@ -37,10 +38,10 @@ config:
     args: 
       - config
       - get
-      - /root/persistence
+      - /var/lib/cwtch
       - /mnt/assets/config_spec.yaml
     mounts:
-      main: /root/persistence
+      main: /var/lib/cwtch
       compat: /mnt/assets
     io-format: yaml
   set:
@@ -52,10 +53,10 @@ config:
       - config
       - set
       - cwtch
-      - /root/persistence
+      - /var/lib/cwtch
       - /mnt/assets/config_rules.yaml
     mounts:
-      main: /root/persistence
+      main: /var/lib/cwtch
       compat: /mnt/assets
     io-format: yaml
 properties:
@@ -65,16 +66,16 @@ properties:
   entrypoint: compat
   args:
     - properties
-    - /root/persistence
+    - /var/lib/cwtch
   mounts:
-    main: /root/persistence
+    main: /var/lib/cwtch
   io-format: yaml
 dependencies: {} 
 volumes: 
   main:
     type: data 
   compat:
-    type: assets 
+    type: assets
 interfaces:
   main:
     name: Network Interface
@@ -104,10 +105,10 @@ backup:
       - duplicity
       - create
       - /mnt/backup
-      - /root/persistence
+      - /var/lib/cwtch
     mounts:
       BACKUP: /mnt/backup
-      main: /root/persistence
+      main: /var/lib/cwtch
     io-format: yaml
   restore:
     type: docker
@@ -118,8 +119,8 @@ backup:
       - duplicity
       - restore
       - /mnt/backup
-      - /root/persistence
+      - /var/lib/cwtch
     mounts:
       BACKUP: /mnt/backup
-      main: /root/persistence
+      main: /var/lib/cwtch
     io-format: yaml
