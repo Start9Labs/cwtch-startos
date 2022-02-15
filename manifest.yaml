@@ -87,7 +87,7 @@ interfaces:
       80:
         ssl: false
         mapping: 80
-    ui: true
+    ui: false
     protocols:
       - tcp
       - http
