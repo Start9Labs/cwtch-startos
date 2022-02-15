@@ -44,3 +44,10 @@ Run the following command to determine successful install:
 embassy-cli auth login
 embassy-cli package install cwtch.s9pk
 ```
+
+## Running
+
+When running, the properties page will display a 'server bundle' that can be used to connect to your cwtch server.
+A cwtch client is needed to connect, and can be found at https://cwtch.im
+
+Fulljoy!

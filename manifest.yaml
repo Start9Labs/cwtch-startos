@@ -29,36 +29,36 @@ main:
     compat: /mnt/assets
   io-format: yaml
 health-checks: {} 
-config:
-  get:
-    type: docker
-    image: compat
-    system: true
-    entrypoint: compat
-    args: 
-      - config
-      - get
-      - /var/lib/cwtch
-      - /mnt/assets/config_spec.yaml
-    mounts:
-      main: /var/lib/cwtch
-      compat: /mnt/assets
-    io-format: yaml
-  set:
-    type: docker
-    image: compat
-    system: true
-    entrypoint: compat
-    args:
-      - config
-      - set
-      - cwtch
-      - /var/lib/cwtch
-      - /mnt/assets/config_rules.yaml
-    mounts:
-      main: /var/lib/cwtch
-      compat: /mnt/assets
-    io-format: yaml
+config: ~
+  # get:
+  #   type: docker
+  #   image: compat
+  #   system: true
+  #   entrypoint: compat
+  #   args: 
+  #     - config
+  #     - get
+  #     - /var/lib/cwtch
+  #     - /mnt/assets/config_spec.yaml
+  #   mounts:
+  #     main: /var/lib/cwtch
+  #     compat: /mnt/assets
+  #   io-format: yaml
+  # set:
+  #   type: docker
+  #   image: compat
+  #   system: true
+  #   entrypoint: compat
+  #   args:
+  #     - config
+  #     - set
+  #     - cwtch
+  #     - /var/lib/cwtch
+  #     - /mnt/assets/config_rules.yaml
+  #   mounts:
+  #     main: /var/lib/cwtch
+  #     compat: /mnt/assets
+  #   io-format: yaml
 properties:
   type: docker
   image: compat
