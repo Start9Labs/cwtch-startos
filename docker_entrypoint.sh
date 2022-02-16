@@ -30,13 +30,13 @@ if [ -z "${CWTCH_CONFIG_DIR}" ]; then
 fi
 
 # Setting up config settings for disabling metrics on cwtch 
-if yq e -e ".disable-metrics" /var/lib/cwtch/start9/config.yaml > /dev/null; 
-then
-  echo -e "Disabling Server Metrics..."
-  DISABLE_METRICS=1
-else
-  DISABLE_METRICS . /dev/null
-fi
+# if yq e -e ".disable-metrics" /var/lib/cwtch/start9/config.yaml > /dev/null; 
+# then
+#   echo -e "Disabling Server Metrics..."
+#   DISABLE_METRICS=1
+# else
+#   DISABLE_METRICS . /dev/null
+# fi
 
 #Run cwtch (or whatever the user passed)
 echo -e "Starting Cwtch Server..."
