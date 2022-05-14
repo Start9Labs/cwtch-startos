@@ -1,6 +1,6 @@
 id: cwtch 
 title: "Cwtch Server"
-version: 1.5.2.0
+version: 1.4.4.1
 release-notes: "Initial release of a Cwtch stand-alone server for EmbassyOS v0.3.0"
 license: mit
 wrapper-repo: "https://github.com/Start9Labs/cwtch-wrapper"
@@ -9,7 +9,6 @@ support-site: "https://cwtch.im/"
 marketing-site: "https://cwtch.im/"
 donation-url: "https://openprivacy.ca/donate"
 build: ["make"]
-min-os-version: "0.3.0"
 description:
   short: Stand-alone server for a free, open-source flutter based messaging platform.
   long: |
@@ -30,35 +29,6 @@ main:
   io-format: yaml
 health-checks: {} 
 config: ~
-  # get:
-  #   type: docker
-  #   image: compat
-  #   system: true
-  #   entrypoint: compat
-  #   args: 
-  #     - config
-  #     - get
-  #     - /var/lib/cwtch
-  #     - /mnt/assets/config_spec.yaml
-  #   mounts:
-  #     main: /var/lib/cwtch
-  #     compat: /mnt/assets
-  #   io-format: yaml
-  # set:
-  #   type: docker
-  #   image: compat
-  #   system: true
-  #   entrypoint: compat
-  #   args:
-  #     - config
-  #     - set
-  #     - cwtch
-  #     - /var/lib/cwtch
-  #     - /mnt/assets/config_rules.yaml
-  #   mounts:
-  #     main: /var/lib/cwtch
-  #     compat: /mnt/assets
-  #   io-format: yaml
 properties:
   type: docker
   image: compat
@@ -86,7 +56,7 @@ interfaces:
     lan-config:
       80:
         ssl: false
-        mapping: 80
+        internal: 80
     ui: false
     protocols:
       - tcp

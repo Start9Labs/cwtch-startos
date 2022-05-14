@@ -7,7 +7,7 @@ S9PK_PATH=$(shell find . -name cwtch.s9pk -print)
 all: verify
 
 verify:  cwtch.s9pk $(S9PK_PATH)
-	embassy-sdk verify $(S9PK_PATH)
+	embassy-sdk verify s9pk $(S9PK_PATH)
 
 install: cwtch.s9pk
 	embassy-cli package install cwtch.s9pk
