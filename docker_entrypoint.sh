@@ -16,6 +16,7 @@ chmod 770 /run/tor
 chown -Rv ${TOR_USER}:${TOR_USER} /var/lib/tor
 chmod_dirs 700 /var/lib/tor
 chmod_files 600 /var/lib/tor
+mkdir -p /var/lib/cwtch/start9
 echo -e "\n========================================================"
 # Display OS version, Tor version & torrc in log
 echo -e "Alpine Version: \c" && cat /etc/alpine-release
@@ -29,29 +30,19 @@ if [ -z "${CWTCH_CONFIG_DIR}" ]; then
 	CWTCH_CONFIG_DIR=/etc/cwtch/
 fi
 
-# Setting up config settings for disabling metrics on cwtch 
-# if yq e -e ".disable-metrics" /var/lib/cwtch/start9/config.yaml > /dev/null; 
-# then
-#   echo -e "Disabling Server Metrics..."
-#   DISABLE_METRICS=1
-# else
-#   DISABLE_METRICS . /dev/null
-# fi
-
 #Run cwtch (or whatever the user passed)
 echo -e "Starting Cwtch Server..."
 cd usr/local/bin
 ./cwtch -exportServerBundle & cwtch_child=$!
 cd /
 
-
 render_properties() {
     while true; do
-      sleep 5
+      sleep 15
       export SERVER_BUNDLE=$( cat var/lib/cwtch/serverbundle || true )
       if [ -z "$SERVER_BUNDLE" ];
       then
-          sleep 5
+          sleep 15
       else
       # Properties 
         echo 'version: 2' > /var/lib/cwtch/start9/stats.yaml

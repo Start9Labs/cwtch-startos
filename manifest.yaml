@@ -1,18 +1,17 @@
 id: cwtch 
-title: "Cwtch Server"
+title: Cwtch Server
 version: 1.4.4.1
-release-notes: "Initial release of a Cwtch stand-alone server for EmbassyOS v0.3.0"
+release-notes: Initial release of a Cwtch stand-alone server for EmbassyOS v0.3.0
 license: mit
-wrapper-repo: "https://github.com/Start9Labs/cwtch-wrapper"
-upstream-repo: "https://git.openprivacy.ca/cwtch.im/server"
-support-site: "https://cwtch.im/"
-marketing-site: "https://cwtch.im/"
-donation-url: "https://openprivacy.ca/donate"
+wrapper-repo: https://github.com/Start9Labs/cwtch-wrapper
+upstream-repo: https://git.openprivacy.ca/cwtch.im/server
+support-site: https://cwtch.im/
+marketing-site: https://cwtch.im/
+donation-url: https://openprivacy.ca/donate
 build: ["make"]
 description:
   short: Stand-alone server for a free, open-source flutter based messaging platform.
-  long: |
-    Cwtch (/kʊtʃ/ - a Welsh word roughly translating to “a hug that creates a safe place”) is a decentralized, privacy-preserving, multi-party messaging protocol that can be used to build metadata resistant applications.
+  long: Cwtch (A Welsh word roughly translating to a hug that creates a safe place) is a decentralized, privacy-preserving, multi-party messaging protocol that can be used to build metadata resistant applications.
 assets:
   license: LICENSE
   icon: icon.png
@@ -62,8 +61,7 @@ interfaces:
       - tcp
       - http
 alerts:
-  install: |
-    After starting Cwtch for the first time, it will generate a 'Server Bundle' that you can use to join the server with any Cwtch UI client.
+  install: After starting Cwtch for the first time, it will generate a Server Bundle that you can use to join the server with any Cwtch UI client.
     Make sure to protect this data, it has admin rights to create users and rooms on this server.
 backup:
   create:

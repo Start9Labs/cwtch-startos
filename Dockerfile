@@ -1,7 +1,6 @@
 FROM --platform=linux/arm64/v8 arm64v8/alpine:latest as tor-build-stage
 RUN apk update
 # Install prerequisites, grab tor, compile it and move to /usr/local
-
 RUN wget -q https://dist.torproject.org/tor-0.4.6.6.tar.gz
 RUN apk --no-cache add --update gnupg build-base libevent libevent-dev libressl libressl-dev xz-libs xz-dev zlib zlib-dev zstd zstd-dev make git
 RUN tar xf tor-0.4.6.6.tar.gz && cd tor-0.4.6.6 && ./configure && make install && ls -R /usr/local/
@@ -37,6 +36,6 @@ COPY cwtch/docker/torrc /etc/tor/torrc
 ADD ./docker_entrypoint.sh /usr/local/bin/docker_entrypoint.sh
 RUN chmod a+x /usr/local/bin/docker_entrypoint.sh
 # Persist data
-VOLUME /etc/tor /var/lib/tor /var/lib/Cwtch
+VOLUME /etc/tor /var/lib/tor /var/lib/cwtch
 EXPOSE 80
 ENTRYPOINT ["/usr/local/bin/docker_entrypoint.sh"]
